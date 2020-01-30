@@ -1,3 +1,19 @@
+const button_rock = document.querySelector('#rock');
+button_rock.addEventListener('click', function () { game('rock'); });
+
+const button_paper = document.querySelector('#paper');
+button_paper.addEventListener('click', function () { game('paper'); });
+
+const button_scissors = document.querySelector('#scissors');
+button_scissors.addEventListener('click', function() { game('scissors'); });
+
+
+const div = document.querySelector('#resultContainer');
+
+const paragraph = document.createElement('p');
+
+
+
 // Computer picks rock, paper, scissors 
 function computerPlay (){
     let turn = ['rock', 'paper', 'scissors'];
@@ -12,19 +28,19 @@ function resultOfGame (playerSelection, computerSelection){
     switch (computerSelection){
 
         case 'rock':
-            return playerSelection == 'rock' ? ["It's a tie", "tie"] : 
-            playerSelection == 'paper' ? ["You win! Paper beats scissor!", true]:
-            ["You lose! Rock beats scissors!", false];
+            return playerSelection == 'rock' ? ["It's a tie"] : 
+            playerSelection == 'paper' ? ["You win! Paper beats scissor!"]:
+            ["You lose! Rock beats scissors!"];
 
         case 'paper':
-            return playerSelection == 'rock' ? ["You lose! Paper beats rock!", false] : 
-            playerSelection == 'paper' ? ["It's a tie!", "tie"]:
-            ["You win! Scissors beats paper!", true];
+            return playerSelection == 'rock' ? ["You lose! Paper beats rock!"] : 
+            playerSelection == 'paper' ? ["It's a tie!"]:
+            ["You win! Scissors beats paper!"];
                     
         case 'scissors':
-            return playerSelection == 'rock' ? ["You win! Rock beats paper!", true] : 
-            playerSelection == 'paper' ? ["You lose! Scissors beats rock!", false]:
-            ["It's a tie!", "tie"];
+            return playerSelection == 'rock' ? ["You win! Rock beats paper!"] : 
+            playerSelection == 'paper' ? ["You lose! Scissors beats rock!"]:
+            ["It's a tie!"];
                         
     }
 }
@@ -36,11 +52,13 @@ function game (playerTurn){
 
     let resultOfRound = document.createElement('p');
     resultOfRound.classList.add('resultOfRound');
+    
 
                 
     for (i = 0; i < 1; i++){
-        resultOfRound = resultOfGame(playerTurn, computerPlay());
-        div.appendChild(resultOfRound)
+
+        clearText();
+        createNode(resultOfGame(playerTurn, computerPlay()));
 
         if (resultOfRound[1] == true){
             playerWin += 1;
@@ -53,9 +71,23 @@ function game (playerTurn){
     }
 
     didWin = finalResult(playerWin, computerWin);
-
-    alert(didWin + " The score was " + playerWin + "-" + computerWin + ".");
 }
+
+function createNode (str, parentNode = roundResult) {
+    let message = document.createElement('p');
+    message.appendChild(document.createTextNode(str));
+    parentNode.appendChild(message);
+
+}
+
+function clearText () {
+    let paragraph = document.querySelectorAll('p');
+    
+    for(let i = 0; i < paragraph.length; i++){
+        paragraph[i].remove();
+        }
+}
+
 
 // Compares player wins to computer wins and determine final statement (who won)
 function finalResult (playerWin, computerWin){
@@ -73,24 +105,5 @@ function finalResult (playerWin, computerWin){
     }
 }
 
-const button_rock = document.querySelector('#rock');
-button_rock.addEventListener('click', (e) => console.log(e.target.));
 
-const button_paper = document.querySelector('#paper');
-button_paper.addEventListener('click', resultOfGame);
-
-const button_scissors = document.querySelector('#scissors');
-button_scissors.addEventListener('click', resultOfGame);
-
-
-const div = document.createElement('div');
-div.classList.add('div');
-
-div.style.border = '10px solid black';
-div.style.height = '100px';
-div.style.width = '500px';
-div.style.marginLeft = '33%';
-div.style.marginTop = '5%';
-
-body.appendChild(div);
 

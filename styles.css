@@ -6,3 +6,12 @@
     width: 15%;
     margin-top: 10%;
 }
+
+#roundResult {
+    border: 10px solid black;
+    height: 100px;
+    width: 500px;
+    margin-left: 33%;
+    margin-top: 5%;
+
+}
