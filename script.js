@@ -1,31 +1,41 @@
 const div = document.querySelector('#resultContainer');
-const finalResult = document.querySelector('#finalResult');
+const roundResultContainer = document.querySelector('#roundResultContainer');
 
 const paragraph = document.createElement('p');
 
-let playerTurn;
+let playerTurn = null;
 let playerScore = 0;
 const playerWins = document.querySelector('playerWins');
 
-let computerTurn;
+let computerTurn = null;
 let computerScore = 0;
 const computerWins = document.querySelector('#computerWins');
 
 let resultOfRound = document.createElement('p');
 
-const playerOptions = document.querySelectorAll('.buttons');
+const rockButton = document.querySelector('#rock');
+rockButton.addEventListener('click', function () {
+    playerTurn = 'rock';
+    game();
+});
 
-for(let i = 0; i < playerOptions.length; i++){
-    playerOptions[i].addEventListener('click', function () {
-        playerTurn = playerOptions[i].textContent;
-        game();
-    });
-}
+const paperButton = document.querySelector('#paper');
+paperButton.addEventListener('click', function () {
+    playerTurn = 'paper';
+    game();
+});
 
-function createNode (str, parentNode = roundResult) {
+const scissorsButton = document.querySelector('#scissors');
+scissorsButton.addEventListener('click', function () {
+    playerTurn = 'scissors';
+    game();
+});
+
+
+function createNode (str, node) {
     let message = document.createElement('p');
     message.appendChild(document.createTextNode(str));
-    parentNode.appendChild(message);
+    roundResultContainer.appendChild(message);
 
 }
 
@@ -43,16 +53,17 @@ function roundWinner() {
     switch (computerTurn){
 
         case 'rock':
-            playerTurn == 'scissors' ? computerScore += 1 : 
-            playerTurn == 'paper' ? playerScore += 1 : computerScore += 0;  
+            return playerTurn == 'scissors' ? false : 
+            playerTurn == 'paper' ? true : 'tie'; 
 
         case 'paper':
-            playerTurn == 'rock' ? computerScore += 1 :
-            playerTurn == 'scissors' ? playerScore += 1 : computerScore += 0;
+            return playerTurn == 'rock' ? false :
+            playerTurn == 'scissors' ? true : 'tie';
                     
         case 'scissors':
-            playerTurn == 'paper' ? computerScore += 1 :
-            playerTurn == 'rock' ? playerScore += 1 : computerScore += 0;
+            playerTurn == 'paper' ? false :
+            playerTurn == 'rock' ? true : 'tie';
+            break;
                         
     }
 
@@ -61,7 +72,6 @@ function roundWinner() {
 function updateScore() {
     createNode(computerScore, computerWins);
     createNode(playerScore, playerWins);
-
     
 }
 
@@ -71,31 +81,45 @@ function computerPlay (){
     computerTurn = turn[Math.floor(Math.random() * 3)];
 }
 
-
-
-
-
-
 function game (){
     
     clearText();
     computerPlay();
-    endResult();
-    roundWinner();
+    roundResult();
     updateScore();
-            
-    
+    gameResult();
 
+}
 
+function roundResult() {
+    let result = roundWinner();
+
+    if(result == 'tie'){
+        createNode('It was a tie.', roundResultContainer);
+    }
+
+    else if(result == true){
+        playerScore += 1;
+        createNode('You won the round!', roundResultContainer);
+    }
+
+    else if(result == false){
+        computerScore += 1;
+        createNode('You lost this round.', roundResultContainer);
+    }
 }
 
 
 
 
 // Compares player wins to computer wins and determine final statement (who won)
-function endResult (){
+function gameResult (){
 
-    if (playerScore > computerScore){
+    if(playerScore != 5 || computerScore != 5){
+        return
+    }
+
+    else if (playerScore > computerScore){
         createNode('YOU WIN!!!', finalResult);
     }
 
