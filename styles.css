@@ -8,11 +8,27 @@
     margin-top: 10%;
 }
 
-#roundResultContainer, #playerWins, #computerWins, #finalResult {
+#roundResultContainer, #finalResult {
     border: 10px solid black;
     height: 100px;
     width: 500px;
     margin-left: 33%;
     margin-top: 5%;
 
+}
+
+#humanWins, #computerWins {
+    width: 10%;
+    height: 10%;
+    border: 10px solid gray;
+}
+
+#humanWins{
+    float: left;
+    margin-left: 33%;
+}
+
+#computerWins{
+    float: right;
+    margin-right: 23.6%;
 }

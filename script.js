@@ -1,9 +1,8 @@
-const div = document.querySelector('#resultContainer');
 const roundResultContainer = document.querySelector('#roundResultContainer');
 
 const paragraph = document.createElement('p');
 
-let playerTurn = null;
+let playerTurn;
 let playerScore = 0;
 const playerWins = document.querySelector('playerWins');
 
@@ -32,10 +31,12 @@ scissorsButton.addEventListener('click', function () {
 });
 
 
-function createNode (str, node) {
+function createNode (str, pnode = roundResultContainer) {
     let message = document.createElement('p');
+    message.classList.add('message');
+    console.log(str);
     message.appendChild(document.createTextNode(str));
-    roundResultContainer.appendChild(message);
+    pnode.appendChild(message);
 
 }
 
@@ -54,16 +55,15 @@ function roundWinner() {
 
         case 'rock':
             return playerTurn == 'scissors' ? false : 
-            playerTurn == 'paper' ? true : 'tie'; 
+            playerTurn == 'paper' ? true : 'tie';
 
         case 'paper':
             return playerTurn == 'rock' ? false :
             playerTurn == 'scissors' ? true : 'tie';
                     
         case 'scissors':
-            playerTurn == 'paper' ? false :
+            return playerTurn == 'paper' ? false :
             playerTurn == 'rock' ? true : 'tie';
-            break;
                         
     }
 
@@ -71,7 +71,7 @@ function roundWinner() {
 
 function updateScore() {
     createNode(computerScore, computerWins);
-    createNode(playerScore, playerWins);
+    createNode(playerScore, humanWins);
     
 }
 
@@ -103,7 +103,7 @@ function roundResult() {
         createNode('You won the round!', roundResultContainer);
     }
 
-    else if(result == false){
+    else{
         computerScore += 1;
         createNode('You lost this round.', roundResultContainer);
     }
@@ -115,25 +115,22 @@ function roundResult() {
 // Compares player wins to computer wins and determine final statement (who won)
 function gameResult (){
 
-    if(playerScore != 5 || computerScore != 5){
-        return
+    if(playerScore == 5 || computerScore == 5){
+        
+        if (playerScore > computerScore){
+            createNode('YOU WIN!!!');
+        }
+    
+        else if (playerScore < computerScore){
+            createNode("You lose...");
+        }
+    
+        else{
+            createNode("It was a tie!");
+        }
     }
 
-    else if (playerScore > computerScore){
-        createNode('YOU WIN!!!', finalResult);
-    }
-
-    else if (playerScore < computerScore){
-        createNode("You lose...", finalResult);
-    }
-
-    else if(playerScore == 5 | computerScore == 5){
-        createNode('THAT\'s GAME!');
-    }
-
-    else{
-        createNode("It was a tie!", finalResult);
-    }
+    
 }
 
 
