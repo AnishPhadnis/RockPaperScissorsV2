@@ -8,27 +8,32 @@
     margin-top: 10%;
 }
 
-#roundResultContainer, #finalResult {
+#roundResultContainer {
     border: 10px solid black;
     height: 100px;
     width: 500px;
     margin-left: 33%;
     margin-top: 5%;
+}
 
+.footer{
+    display: flex;
+    margin-left: 33%; 
+}
+
+#finalResult{
+    border: 10px solid black;
+    width: 35%;
+    height: 15%;
+    
 }
 
 #humanWins, #computerWins {
-    width: 10%;
+    width: 11.2%;
     height: 10%;
     border: 10px solid gray;
 }
 
-#humanWins{
-    float: left;
-    margin-left: 33%;
-}
-
-#computerWins{
-    float: right;
-    margin-right: 23.6%;
+#reset {
+    margin-left: 53%;
 }

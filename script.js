@@ -1,4 +1,6 @@
 const roundResultContainer = document.querySelector('#roundResultContainer');
+const finalResult = document.querySelector('#finalResult');
+
 
 const paragraph = document.createElement('p');
 
@@ -30,11 +32,15 @@ scissorsButton.addEventListener('click', function () {
     game();
 });
 
+const reset = document.querySelector('#reset');
+reset.addEventListener("click", function () {
+    resetGame();
+})
+
 
 function createNode (str, pnode = roundResultContainer) {
     let message = document.createElement('p');
     message.classList.add('message');
-    console.log(str);
     message.appendChild(document.createTextNode(str));
     pnode.appendChild(message);
 
@@ -82,6 +88,10 @@ function computerPlay (){
 }
 
 function game (){
+
+    if(playerScore == 5 || computerScore == 5){
+        resetGame();
+    }
     
     clearText();
     computerPlay();
@@ -116,21 +126,32 @@ function roundResult() {
 function gameResult (){
 
     if(playerScore == 5 || computerScore == 5){
-        
+
         if (playerScore > computerScore){
-            createNode('YOU WIN!!!');
+            createNode('YOU WIN THE GAME!!!', finalResult);
+            
         }
     
         else if (playerScore < computerScore){
-            createNode("You lose...");
+            createNode("You lose the game...", finalResult);
+            
         }
     
         else{
-            createNode("It was a tie!");
+            createNode("It was a tie this game!", finalResult);
+            
         }
+        
     }
 
     
+}
+
+function resetGame(){
+
+    clearText();
+    computerScore = 0;
+    playerScore = 0;
 }
 
 
