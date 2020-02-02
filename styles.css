@@ -1,4 +1,4 @@
-.buttons{
+.playerbuttons{
     margin-left: 40%;
     
 }
@@ -8,7 +8,7 @@
     margin-top: 10%;
 }
 
-#roundResult, #playerWins, #computerWins, #finalResult {
+#roundResultContainer, #playerWins, #computerWins, #finalResult {
     border: 10px solid black;
     height: 100px;
     width: 500px;

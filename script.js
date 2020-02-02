@@ -127,6 +127,10 @@ function gameResult (){
         createNode("You lose...", finalResult);
     }
 
+    else if(playerScore == 5 | computerScore == 5){
+        createNode('THAT\'s GAME!');
+    }
+
     else{
         createNode("It was a tie!", finalResult);
     }
