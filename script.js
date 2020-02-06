@@ -91,6 +91,7 @@ function game (){
 
     if(playerScore == 5 || computerScore == 5){
         resetGame();
+
     }
     
     clearText();
@@ -129,17 +130,19 @@ function gameResult (){
 
         if (playerScore > computerScore){
             createNode('YOU WIN THE GAME!!!', finalResult);
+            finalResult.style.borderColor = '#009432';
             
         }
     
         else if (playerScore < computerScore){
             createNode("You lose the game...", finalResult);
+            finalResult.style.borderColor = '#eb3b5a';
             
         }
     
         else{
             createNode("It was a tie this game!", finalResult);
-            
+            finalResult.style.borderColor = '#bdc3c7';
         }
         
     }
@@ -152,6 +155,8 @@ function resetGame(){
     clearText();
     computerScore = 0;
     playerScore = 0;
+
+    finalResult.style.borderColor = '#2c3e50';
 }
 
 

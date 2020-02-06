@@ -1,39 +1,60 @@
 .playerbuttons{
-    margin-left: 40%;
+    margin-left: 35%;
     
 }
 
 #rock, #paper, #scissors{
     width: 15%;
-    margin-top: 10%;
+    margin-top: 4%;
 }
 
 #roundResultContainer {
-    border: 10px solid black;
+    border: 10px solid #2c3e50;
     height: 100px;
-    width: 500px;
-    margin-left: 33%;
+    width: 536px;
+    margin-left: 28%;
     margin-top: 5%;
+    text-align: center;
+    font-size: large;
 }
 
 .footer{
     display: flex;
-    margin-left: 33%; 
+    margin-left: 28%; 
 }
 
 #finalResult{
-    border: 10px solid black;
+    border: 10px solid #2c3e50;
     width: 35%;
-    height: 15%;
-    
+    height: 68px;
+    text-align: center;
+    font-size: large;
 }
 
-#humanWins, #computerWins {
+#computerWins {
     width: 11.2%;
     height: 10%;
-    border: 10px solid gray;
+    border: 10px solid #c0392b;
+    text-align: center;
 }
 
 #reset {
-    margin-left: 53%;
+    margin-left: 48%;
+}
+
+#humanWins {
+    width: 11.2%;
+    height: 10%;
+    border: 10px solid #2ecc71;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+html {
+    background: url('images/background.jpg');
+    background-size: cover;
+    color: black;
 }
