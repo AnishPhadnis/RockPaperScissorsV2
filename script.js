@@ -1,19 +1,16 @@
-const roundResultContainer = document.querySelector('#roundResultContainer');
+//Where results will be displayed
+const roundResult = document.querySelector('#roundResult');
 const finalResult = document.querySelector('#finalResult');
-
-
-const paragraph = document.createElement('p');
 
 let playerTurn;
 let playerScore = 0;
 const playerWins = document.querySelector('playerWins');
 
-let computerTurn = null;
+let computerTurn;
 let computerScore = 0;
 const computerWins = document.querySelector('#computerWins');
 
-let resultOfRound = document.createElement('p');
-
+//Create event listeners for rock, paper, scissors + reset buttons
 const rockButton = document.querySelector('#rock');
 rockButton.addEventListener('click', function () {
     playerTurn = 'rock';
@@ -38,7 +35,7 @@ reset.addEventListener("click", function () {
 })
 
 
-function createNode (str, pnode = roundResultContainer) {
+function createNode (str, pnode = roundResult) {
     let message = document.createElement('p');
     message.classList.add('message');
     message.appendChild(document.createTextNode(str));
@@ -96,32 +93,29 @@ function game (){
     
     clearText();
     computerPlay();
-    roundResult();
+    roundWinner();
     updateScore();
     gameResult();
 
 }
 
-function roundResult() {
+function roundWinner() {
     let result = roundWinner();
 
     if(result == 'tie'){
-        createNode('It was a tie.', roundResultContainer);
+        createNode('It was a tie.', roundResult);
     }
 
     else if(result == true){
         playerScore += 1;
-        createNode('You won the round!', roundResultContainer);
+        createNode('You won the round!', roundResult);
     }
 
     else{
         computerScore += 1;
-        createNode('You lost this round.', roundResultContainer);
+        createNode('You lost this round.', roundResult);
     }
 }
-
-
-
 
 // Compares player wins to computer wins and determine final statement (who won)
 function gameResult (){
