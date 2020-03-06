@@ -121,6 +121,7 @@ function roundWinner() {
 function gameResult (){
 
     if(playerScore == 5 || computerScore == 5){
+        
         clearText();
         if (playerScore > computerScore){
             createNode('YOU WIN THE GAME!!!', finalResult);
