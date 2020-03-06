@@ -49,10 +49,10 @@ function clearText () {
     
     for(let i = 0; i < paragraph.length; i++){
         paragraph[i].remove();
-        }
+    }
 }
 
-function roundWinner() {
+function roundWinnerCase() {
 
     switch (computerTurn){
 
@@ -100,20 +100,20 @@ function game (){
 }
 
 function roundWinner() {
-    let result = roundWinner();
+    let result = roundWinnerCase();
 
     if(result == 'tie'){
-        createNode('It was a tie.', roundResult);
+        createNode('It was a tie.', finalResult);
     }
 
     else if(result == true){
         playerScore += 1;
-        createNode('You won the round!', roundResult);
+        createNode('You won the round!', finalResult);
     }
 
     else{
         computerScore += 1;
-        createNode('You lost this round.', roundResult);
+        createNode('You lost this round.', finalResult);
     }
 }
 
@@ -121,7 +121,7 @@ function roundWinner() {
 function gameResult (){
 
     if(playerScore == 5 || computerScore == 5){
-
+        clearText();
         if (playerScore > computerScore){
             createNode('YOU WIN THE GAME!!!', finalResult);
             finalResult.style.borderColor = '#009432';
